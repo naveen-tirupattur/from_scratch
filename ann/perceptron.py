@@ -6,6 +6,7 @@ from sklearn.metrics import precision_score, recall_score
 
 # Define activation function and its derivative
 def sigmoid(z):
+    # This function handles numeric overflows and underflows better
     return expit(z)
 
 def sigmoid_derivative(z):
