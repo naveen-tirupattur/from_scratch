@@ -115,5 +115,8 @@ You would repeat this process with many more training examples to train the perc
 * Backpropagation is more commonly used in multi-layer neural networks rather than simple perceptrons.
 * The choice of activation function affects the gradient calculations.
 * Hyperparameters like the learning rate need to be tuned for optimal performance.
+* Imagine you have a very large input: 
+  * Direct Calculation: y_pred * (1 - y_pred) might result in very small values, leading to very small updates, potentially slowing down learning.
+  * sigmoid_derivative: The sigmoid_derivative function is designed to handle these extreme values more accurately.
 
 This breakdown provides a mathematical foundation for understanding how backpropagation works to train a perceptron. 

@@ -13,17 +13,21 @@ def sigmoid_derivative(z):
 
 # Single-layer neural network (Perceptron)
 class SingleLayerNN:
-    def __init__(self, input_size, output_size, threshold=0.5):
+    def __init__(self, input_size, output_size):
         self.weights = np.random.randn(input_size, output_size)
         self.bias = np.zeros((1, output_size))
 
-    def forward(self, X, threshold=0.5):
-        self.output = (sigmoid(np.dot(X, self.weights) + self.bias) >= threshold).astype(int)
+    def forward(self, X):
+        self.output = sigmoid(np.dot(X, self.weights) + self.bias)
+        # self.output = (sigmoid(np.dot(X, self.weights) + self.bias) >= threshold).astype(int)
         return self.output
 
     def backward(self, X, y, learning_rate):
         # Output layer (single layer in this case)
         output_error = y - self.output
+        # I tried the below alternative,
+        # but it didn't converge well probably owing to nature of values
+        # output_delta = output_error * self.output * (1 - self.output)
         output_delta = output_error * sigmoid_derivative(self.output)
 
         # Update weights and biases
